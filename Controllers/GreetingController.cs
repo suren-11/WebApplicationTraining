@@ -8,15 +8,17 @@ namespace WebApplicationTraining.Controllers
     [ApiController]
     public class GreetingController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Greet(string fullName, DateTime dateOfBirth)
+        [HttpGet("{fullName}/{dateOfBirth}")]
+        public IActionResult Greet(string fullName, string dateOfBirth)
         {
-            int age = DateTime.Now.Year - dateOfBirth.Year;
+            DateTime birthYear = DateTime.Parse(dateOfBirth);
+
+            int age = DateTime.Now.Year - birthYear.Year;
 
             return Ok($"Hello, my name is {fullName} and I am {age} years old..");
         }
 
-        [HttpGet("findname")]
+        [HttpGet("findname/{name}")]
         public IActionResult getName(string name)
         {
             ArrayList fullNames = new ArrayList() { "Suren Prasanth", "Alex Pandian", "Prasanga Basnayake", "Ramesh Gunathilaka", "Alex Perera", "Suren Ram", "Prasanga Rathnayake" };
