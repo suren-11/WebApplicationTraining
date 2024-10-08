@@ -19,7 +19,7 @@ namespace WebApplicationTraining.Controllers
         }
 
         [HttpGet("findname/{name}")]
-        public IActionResult getName(string name)
+        public IActionResult GetName(string name)
         {
             ArrayList fullNames = new ArrayList() { "Suren Prasanth", "Alex Pandian", "Prasanga Basnayake", "Ramesh Gunathilaka", "Alex Perera", "Suren Ram", "Prasanga Rathnayake" };
             ArrayList matchingNames = new ArrayList();
@@ -39,5 +39,15 @@ namespace WebApplicationTraining.Controllers
 
             return NotFound("No matching names found");
         }
+
+        [HttpGet("list/{names}")]
+        public IActionResult GetListName(string names) 
+        {
+            List<string> fullNames = names.Split(',').ToList();
+
+            return Ok($"Names Recieved {string.Join(", ",fullNames)}");
+
+        }
+
     }
 }
