@@ -41,12 +41,25 @@ namespace WebApplicationTraining.Controllers
         }
 
         [HttpGet("list/{names}")]
-        public IActionResult GetListName(string names) 
+        public IActionResult GetListName(string names)
         {
             List<string> fullNames = names.Split(',').ToList();
 
-            return Ok($"Names Recieved {string.Join(", ",fullNames)}");
+            return Ok($"Names Recieved {string.Join(", ", fullNames)}");
 
+        }
+
+        [HttpGet("fromquery")]
+        public IActionResult FromQuerry([FromQuery] string fullName)
+        {
+            return Ok($"Hello, my name is {fullName} this i getting from query.");
+        }
+
+        [HttpGet("fromquery/list")]
+        public IActionResult FromBody([FromQuery] List<string> names)
+        {
+            
+            return Ok($"Names Recieved from list {string.Join(", ", names)}");
         }
 
     }
